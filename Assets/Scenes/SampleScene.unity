@@ -421,6 +421,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7dc2aa95a47394993ecd247bb045bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &529049964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 529049965}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &529049965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529049964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1639780166}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &626244062
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +597,7 @@ GameObject:
   - component: {fileID: 1428690657}
   - component: {fileID: 1428690656}
   - component: {fileID: 1428690660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -840,6 +871,7 @@ GameObject:
   - component: {fileID: 1639780169}
   - component: {fileID: 1639780170}
   - component: {fileID: 1639780171}
+  - component: {fileID: 1639780172}
   - component: {fileID: 1639780168}
   m_Layer: 0
   m_Name: Player
@@ -863,6 +895,7 @@ Transform:
   m_Children:
   - {fileID: 1475481768}
   - {fileID: 1495194191}
+  - {fileID: 529049965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1639780167
@@ -880,6 +913,7 @@ MonoBehaviour:
   _movement: {fileID: 1639780169}
   _cameraRotation: {fileID: 1639780170}
   _jumping: {fileID: 1639780171}
+  _groundCheck: {fileID: 1639780172}
   _head: {fileID: 1495194191}
 --- !u!54 &1639780168
 Rigidbody:
@@ -956,6 +990,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1639780168}
   _force: 10
+--- !u!114 &1639780172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639780165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310becc1b093ce64994b75044509e56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundCheck: {fileID: 529049965}
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  _radius: 0.1
 --- !u!1 &2126334188
 GameObject:
   m_ObjectHideFlags: 0

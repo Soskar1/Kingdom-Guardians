@@ -6,12 +6,14 @@ namespace KingdomGuardians.Core
     [RequireComponent(typeof(PhysicsMovement))]
     [RequireComponent(typeof(PlayerRotation))]
     [RequireComponent(typeof(Jumping))]
+    [RequireComponent(typeof(GroundCheck))]
     public class Player : MonoBehaviour
     {
         private Input _input;
         [SerializeField] private PhysicsMovement _movement;
         [SerializeField] private PlayerRotation _cameraRotation;
         [SerializeField] private Jumping _jumping;
+        [SerializeField] private GroundCheck _groundCheck;
         [SerializeField] private Transform _head;
 
         private void Awake() => _input = new Input();
@@ -41,7 +43,8 @@ namespace KingdomGuardians.Core
 
         private void Jump(InputAction.CallbackContext context)
         {
-            _jumping.Jump();
+            if (_groundCheck.CheckForGround())
+                _jumping.Jump();
         }
     }
 }
