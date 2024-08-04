@@ -21,7 +21,8 @@ namespace KingdomGuardians.Core
 
         private void FixedUpdate()
         {
-            _movement.Move(_input.Movement);
+            Vector3 movement = transform.forward * _input.Movement.y + transform.right * _input.Movement.x;
+            _movement.Move(movement);
         }
     }
 }

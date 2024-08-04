@@ -839,8 +839,8 @@ GameObject:
   - component: {fileID: 1639780166}
   - component: {fileID: 1639780167}
   - component: {fileID: 1639780169}
-  - component: {fileID: 1639780168}
   - component: {fileID: 1639780170}
+  - component: {fileID: 1639780168}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -935,11 +935,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _head: {fileID: 1495194191}
-  _body: {fileID: 1475481768}
+  _body: {fileID: 1639780166}
   _xSensitivity: 10
   _ySensitivity: 10
-  _yMin: -75
-  _yMax: 75
+  _yMin: -90
+  _yMax: 90
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
