@@ -13,13 +13,13 @@ namespace KingdomGuardians.Core
 
         public void Move(Vector3 direction)
         {
-            Vector3 targetVelocity = direction.normalized * _maxSpeed * Time.fixedDeltaTime;
+            Vector3 targetVelocity = direction.normalized * _maxSpeed;
             Vector3 velocityDifference = targetVelocity - _rigidbody.velocity;
             float accelerationRate = velocityDifference.magnitude > Mathf.Epsilon ? _acceleration : _decceleration;
             float movementX = Mathf.Pow(Mathf.Abs(velocityDifference.x) * accelerationRate, _velocityPower) * Mathf.Sign(velocityDifference.x);
             float movementZ = Mathf.Pow(Mathf.Abs(velocityDifference.z) * accelerationRate, _velocityPower) * Mathf.Sign(velocityDifference.z);
 
-            _rigidbody.AddForce(new Vector3(movementX, 0.0f, movementZ));
+            _rigidbody.AddForce(new Vector3(movementX, 0.0f, movementZ), ForceMode.Acceleration);
         }
     }
 }
