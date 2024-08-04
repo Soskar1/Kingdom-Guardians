@@ -840,6 +840,7 @@ GameObject:
   - component: {fileID: 1639780167}
   - component: {fileID: 1639780169}
   - component: {fileID: 1639780170}
+  - component: {fileID: 1639780171}
   - component: {fileID: 1639780168}
   m_Layer: 0
   m_Name: Player
@@ -878,6 +879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 1639780169}
   _cameraRotation: {fileID: 1639780170}
+  _jumping: {fileID: 1639780171}
 --- !u!54 &1639780168
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -902,9 +904,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1639780169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,6 +942,20 @@ MonoBehaviour:
   _ySensitivity: 10
   _yMin: -90
   _yMax: 90
+--- !u!114 &1639780171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639780165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68aa33ad39509c94ba7aa83ce8c918b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1639780168}
+  _force: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace KingdomGuardians.Core
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class PhysicsMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;

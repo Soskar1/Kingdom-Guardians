@@ -1,18 +1,31 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace KingdomGuardians.Core
 {
     [RequireComponent(typeof(PhysicsMovement))]
     [RequireComponent(typeof(PlayerRotation))]
+    [RequireComponent(typeof(Jumping))]
     public class Player : MonoBehaviour
     {
         private Input _input;
         [SerializeField] private PhysicsMovement _movement;
         [SerializeField] private PlayerRotation _cameraRotation;
+        [SerializeField] private Jumping _jumping;
 
         private void Awake() => _input = new Input();
-        private void OnEnable() => _input.Enable();
-        private void OnDisable() => _input.Disable();
+        
+        private void OnEnable()
+        {
+            _input.Controls.Player.Jump.performed += Jump;
+            _input.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _input.Controls.Player.Jump.performed -= Jump;
+            _input.Disable();
+        }
 
         private void Update()
         {
@@ -23,6 +36,11 @@ namespace KingdomGuardians.Core
         {
             Vector3 movement = transform.forward * _input.Movement.y + transform.right * _input.Movement.x;
             _movement.Move(movement);
+        }
+
+        private void Jump(InputAction.CallbackContext context)
+        {
+            _jumping.Jump();
         }
     }
 }
