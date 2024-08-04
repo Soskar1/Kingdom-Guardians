@@ -7,6 +7,7 @@ namespace KingdomGuardians.Core
     [RequireComponent(typeof(PlayerRotation))]
     [RequireComponent(typeof(Jumping))]
     [RequireComponent(typeof(GroundCheck))]
+    [RequireComponent(typeof(Gravity))]
     public class Player : MonoBehaviour
     {
         private Input _input;
@@ -14,6 +15,7 @@ namespace KingdomGuardians.Core
         [SerializeField] private PlayerRotation _cameraRotation;
         [SerializeField] private Jumping _jumping;
         [SerializeField] private GroundCheck _groundCheck;
+        [SerializeField] private Gravity _gravity;
         [SerializeField] private Transform _head;
 
         private void Awake() => _input = new Input();
@@ -33,6 +35,10 @@ namespace KingdomGuardians.Core
         private void Update()
         {
             _cameraRotation.Rotate(_input.DeltaMouse);
+
+            // TODO: Maybe there is a much better way to handle it...
+            if (!_groundCheck.CheckForGround())
+                _gravity.Apply();
         }
 
         private void FixedUpdate()

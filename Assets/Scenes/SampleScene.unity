@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 1639780170}
   - component: {fileID: 1639780171}
   - component: {fileID: 1639780172}
+  - component: {fileID: 1639780173}
   - component: {fileID: 1639780168}
   m_Layer: 0
   m_Name: Player
@@ -914,6 +915,7 @@ MonoBehaviour:
   _cameraRotation: {fileID: 1639780170}
   _jumping: {fileID: 1639780171}
   _groundCheck: {fileID: 1639780172}
+  _gravity: {fileID: 1639780173}
   _head: {fileID: 1495194191}
 --- !u!54 &1639780168
 Rigidbody:
@@ -1007,6 +1009,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _radius: 0.1
+--- !u!114 &1639780173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639780165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce06635f11d701346a6f3733d3fafee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _force: 3
+  _rigidbody: {fileID: 1639780168}
 --- !u!1 &2126334188
 GameObject:
   m_ObjectHideFlags: 0
