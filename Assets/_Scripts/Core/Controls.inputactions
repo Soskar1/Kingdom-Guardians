@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Build",
+                    "name": "BuildingUI",
                     "type": "Button",
                     "id": "160949cb-d06c-4787-9b58-461539a1e44a",
                     "expectedControlType": "Button",
@@ -123,11 +123,11 @@
                 {
                     "name": "",
                     "id": "35f2039d-5f22-4f38-87f0-4cbf41b4895c",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Build",
+                    "action": "BuildingUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

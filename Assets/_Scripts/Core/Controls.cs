@@ -55,7 +55,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Build"",
+                    ""name"": ""BuildingUI"",
                     ""type"": ""Button"",
                     ""id"": ""160949cb-d06c-4787-9b58-461539a1e44a"",
                     ""expectedControlType"": ""Button"",
@@ -145,11 +145,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""35f2039d-5f22-4f38-87f0-4cbf41b4895c"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Build"",
+                    ""action"": ""BuildingUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -163,7 +163,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_DeltaMouse = m_Player.FindAction("DeltaMouse", throwIfNotFound: true);
-        m_Player_Build = m_Player.FindAction("Build", throwIfNotFound: true);
+        m_Player_BuildingUI = m_Player.FindAction("BuildingUI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -228,7 +228,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_DeltaMouse;
-    private readonly InputAction m_Player_Build;
+    private readonly InputAction m_Player_BuildingUI;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -236,7 +236,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @DeltaMouse => m_Wrapper.m_Player_DeltaMouse;
-        public InputAction @Build => m_Wrapper.m_Player_Build;
+        public InputAction @BuildingUI => m_Wrapper.m_Player_BuildingUI;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -255,9 +255,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DeltaMouse.started += instance.OnDeltaMouse;
             @DeltaMouse.performed += instance.OnDeltaMouse;
             @DeltaMouse.canceled += instance.OnDeltaMouse;
-            @Build.started += instance.OnBuild;
-            @Build.performed += instance.OnBuild;
-            @Build.canceled += instance.OnBuild;
+            @BuildingUI.started += instance.OnBuildingUI;
+            @BuildingUI.performed += instance.OnBuildingUI;
+            @BuildingUI.canceled += instance.OnBuildingUI;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -271,9 +271,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DeltaMouse.started -= instance.OnDeltaMouse;
             @DeltaMouse.performed -= instance.OnDeltaMouse;
             @DeltaMouse.canceled -= instance.OnDeltaMouse;
-            @Build.started -= instance.OnBuild;
-            @Build.performed -= instance.OnBuild;
-            @Build.canceled -= instance.OnBuild;
+            @BuildingUI.started -= instance.OnBuildingUI;
+            @BuildingUI.performed -= instance.OnBuildingUI;
+            @BuildingUI.canceled -= instance.OnBuildingUI;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -296,6 +296,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDeltaMouse(InputAction.CallbackContext context);
-        void OnBuild(InputAction.CallbackContext context);
+        void OnBuildingUI(InputAction.CallbackContext context);
     }
 }

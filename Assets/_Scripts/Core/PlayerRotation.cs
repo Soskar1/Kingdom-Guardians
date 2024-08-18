@@ -14,8 +14,15 @@ namespace KingdomGuardians.Core
         private float _xRot = 0;
         private float _yRot = 0;
 
+        private bool _canRotate = true;
+
+        public bool CanRotate { set => _canRotate = value; }
+
         public void Rotate(Vector2 deltaMouse)
         {
+            if (!_canRotate)
+                return;
+
             Vector2 targetRotation = new Vector2(
                 deltaMouse.x * _xSensitivity,
                 deltaMouse.y * _ySensitivity
