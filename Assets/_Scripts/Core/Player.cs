@@ -1,3 +1,4 @@
+using KingdomGuardians.Core.BuildSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,27 +9,41 @@ namespace KingdomGuardians.Core
     [RequireComponent(typeof(Jumping))]
     [RequireComponent(typeof(GroundCheck))]
     [RequireComponent(typeof(Gravity))]
+    [RequireComponent(typeof(BuildingConstruction))]
     public class Player : MonoBehaviour
     {
         private Input _input;
-        [SerializeField] private PhysicsMovement _movement;
-        [SerializeField] private PlayerRotation _cameraRotation;
-        [SerializeField] private Jumping _jumping;
-        [SerializeField] private GroundCheck _groundCheck;
-        [SerializeField] private Gravity _gravity;
+        private PhysicsMovement _movement;
+        private PlayerRotation _cameraRotation;
+        private Jumping _jumping;
+        private GroundCheck _groundCheck;
+        private Gravity _gravity;
+        private BuildingConstruction _buildingConstruction;
         [SerializeField] private Transform _head;
 
-        private void Awake() => _input = new Input();
-        
+        private void Awake()
+        {
+            _input = new Input();
+
+            _movement = GetComponent<PhysicsMovement>();
+            _cameraRotation = GetComponent<PlayerRotation>();
+            _jumping = GetComponent<Jumping>();
+            _groundCheck = GetComponent<GroundCheck>();
+            _gravity = GetComponent<Gravity>();
+            _buildingConstruction = GetComponent<BuildingConstruction>();
+        }
+
         private void OnEnable()
         {
             _input.Controls.Player.Jump.performed += Jump;
+            _input.Controls.Player.Build.performed += Build;
             _input.Enable();
         }
 
         private void OnDisable()
         {
             _input.Controls.Player.Jump.performed -= Jump;
+            _input.Controls.Player.Build.performed -= Build;
             _input.Disable();
         }
 
@@ -52,5 +67,7 @@ namespace KingdomGuardians.Core
             if (_groundCheck.CheckForGround())
                 _jumping.Jump();
         }
+
+        private void Build(InputAction.CallbackContext context) => _buildingConstruction.Build();
     }
 }

@@ -5,11 +5,13 @@ namespace KingdomGuardians.Core
     [RequireComponent(typeof(Rigidbody))]
     public class PhysicsMovement : MonoBehaviour
     {
-        [SerializeField] private Rigidbody _rigidbody;
+        private Rigidbody _rigidbody;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _acceleration;
         [SerializeField] private float _decceleration;
         [SerializeField] private float _velocityPower;
+
+        private void Awake() => _rigidbody = GetComponent<Rigidbody>();
 
         public void Move(Vector3 direction)
         {

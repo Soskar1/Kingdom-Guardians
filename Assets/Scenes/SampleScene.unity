@@ -1173,13 +1173,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639780166}
+  - component: {fileID: 1639780168}
   - component: {fileID: 1639780167}
   - component: {fileID: 1639780169}
   - component: {fileID: 1639780170}
   - component: {fileID: 1639780171}
   - component: {fileID: 1639780172}
   - component: {fileID: 1639780173}
-  - component: {fileID: 1639780168}
+  - component: {fileID: 1639780174}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1217,11 +1218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1ed2a2fddf04c42ae183e323cc9518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movement: {fileID: 1639780169}
-  _cameraRotation: {fileID: 1639780170}
-  _jumping: {fileID: 1639780171}
-  _groundCheck: {fileID: 1639780172}
-  _gravity: {fileID: 1639780173}
   _head: {fileID: 1495194191}
 --- !u!54 &1639780168
 Rigidbody:
@@ -1262,7 +1258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75806be3bfca554db56b7f204b5aae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1639780168}
   _maxSpeed: 30
   _acceleration: 15
   _decceleration: 10
@@ -1296,7 +1291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68aa33ad39509c94ba7aa83ce8c918b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 1639780168}
   _force: 10
 --- !u!114 &1639780172
 MonoBehaviour:
@@ -1328,7 +1322,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _force: 3
-  _rigidbody: {fileID: 1639780168}
+--- !u!114 &1639780174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639780165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 891506e6a47a70f45a85e8fb0a3660ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingPrefab: {fileID: 3820822573695410417, guid: d8c1a76eebb5cd447aa10b7f714a9f25,
+    type: 3}
+  _head: {fileID: 1495194191}
+  _maxDistance: 15
+  _layers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &21722246713940840
 Transform:
   m_ObjectHideFlags: 0
@@ -1338,7 +1350,7 @@ Transform:
   m_GameObject: {fileID: 794600458540532178}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.31, y: -1.051, z: -1.8}
+  m_LocalPosition: {x: 20.76, y: -1.051, z: 26.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
