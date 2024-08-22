@@ -9,7 +9,7 @@ namespace KingdomGuardians.Core
         private Input _input;
         [SerializeField] private Player _player;
         [SerializeField] private GameUI _gameUI;
-        [SerializeField] private BuildingProjection _buildingProjection;
+        [SerializeField] private BuildingConstruction _buildingConstruction;
         [SerializeField] private Transform _spawnpoint;
 
         private void Awake()
@@ -25,7 +25,7 @@ namespace KingdomGuardians.Core
             Player playerInstance = Instantiate(_player, _spawnpoint.position, Quaternion.identity) as Player;
             playerInstance.Initialize(_input);
             _gameUI.Initialize(_input.Controls, playerInstance.GetComponent<PlayerRotation>());
-            _buildingProjection.Initialize(playerInstance);
+            _buildingConstruction.Initialize(playerInstance, _input.Controls);
         }
 
         private void OnEnable() => _input.Enable();

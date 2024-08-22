@@ -700,7 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1917241843712009855, guid: 1e3a9110548f2ec4b896796fe97286f9, type: 3}
   _gameUI: {fileID: 1141229277}
-  _buildingProjection: {fileID: 2007594487}
+  _buildingConstruction: {fileID: 2007594488}
   _spawnpoint: {fileID: 1292781664}
 --- !u!1 &744918144
 GameObject:
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buildingInfo: {fileID: 11400000, guid: ac1d99865b761444c82478411fc5bb1b, type: 2}
-  _buildingProjection: {fileID: 2007594487}
+  _buildingConstruction: {fileID: 2007594488}
   _buildingName: {fileID: 1967317486}
   _cost: {fileID: 1658973720}
 --- !u!1 &1141229272
@@ -1967,8 +1967,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2007594486}
   - component: {fileID: 2007594487}
+  - component: {fileID: 2007594488}
   m_Layer: 0
-  m_Name: BuildingProjection
+  m_Name: BuildSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2001,10 +2002,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d64090834fe504e98632258a366f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxBuildDistance: 5
   _layers:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &2007594488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007594485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6723b536bbce62549bf4cd92f6dc1c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &21722246713940840
 Transform:
   m_ObjectHideFlags: 0

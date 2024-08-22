@@ -7,7 +7,7 @@ namespace KingdomGuardians.Core.UI
     public class BuildingInfoUI : MonoBehaviour
     {
         [SerializeField] private BuildingInfo _buildingInfo;
-        [SerializeField] private BuildingProjection _buildingProjection;
+        [SerializeField] private BuildingConstruction _buildingConstruction;
         private BuildingUI _buildingUI;
 
         [SerializeField] private TextMeshProUGUI _buildingName;
@@ -24,7 +24,7 @@ namespace KingdomGuardians.Core.UI
         public void Project()
         {
             _buildingUI.Close();
-            _buildingProjection.StartBuildingProjection(_buildingInfo);
+            _buildingConstruction.StartBuilding(_buildingInfo);
         }
     }
 }

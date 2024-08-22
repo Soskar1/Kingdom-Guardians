@@ -12,6 +12,8 @@ namespace KingdomGuardians.Core.BuildSystem
 
         private Dictionary<string, GameObject> _buildings = new Dictionary<string, GameObject>();
 
+        public GameObject SelectedBuilding => _selectedBuilding;
+
         public void Initialize(Player player) => _head = player.Head;
 
         private void Update()
@@ -27,7 +29,14 @@ namespace KingdomGuardians.Core.BuildSystem
         public void StartBuildingProjection(BuildingInfo buildingInfo)
         {
             _selectedBuilding = GetGameObject(buildingInfo);
+            _selectedBuilding.SetActive(true);
             _canProject = true;
+        }
+
+        public void StopProjection()
+        {
+            _selectedBuilding?.SetActive(false);
+            _canProject = false;
         }
 
         private GameObject GetGameObject(BuildingInfo buildingInfo)
