@@ -7,29 +7,31 @@ namespace KingdomGuardians.Core.BuildSystem
     public class BuildingConstruction : MonoBehaviour
     {
         private BuildingProjection _projection;
-        private Controls _controls;
+        private Input _input;
 
         private void Awake() => _projection = GetComponent<BuildingProjection>();
 
-        public void Initialize(Player player, Controls controls)
+        private void OnDisable() => _input.Controls.Player.Build.performed -= Build;
+
+        public void Initialize(Player player, Input input)
         {
-            _controls = controls;
-            _projection.Initialize(player);
+            _input = input;
+            _projection.Initialize(player, input);
         }
 
         public void StartBuilding(BuildingInfo buildingInfo)
         {
             _projection.StartBuildingProjection(buildingInfo);
-            _controls.Player.Build.performed += Build;
+            _input.Controls.Player.Build.performed += Build;
         }
 
         public void Build(InputAction.CallbackContext context)
         {
-            _controls.Player.Build.performed -= Build;
+            _input.Controls.Player.Build.performed -= Build;
             _projection.StopProjection();
 
             GameObject prefab = _projection.SelectedBuilding;
-            GameObject buildingInstance = Instantiate(prefab, prefab.transform.position, Quaternion.identity);
+            GameObject buildingInstance = Instantiate(prefab, prefab.transform.position, prefab.transform.rotation);
             buildingInstance.SetActive(true);
         }
     }

@@ -25,7 +25,7 @@ namespace KingdomGuardians.Core
             Player playerInstance = Instantiate(_player, _spawnpoint.position, Quaternion.identity) as Player;
             playerInstance.Initialize(_input);
             _gameUI.Initialize(_input.Controls, playerInstance.GetComponent<PlayerRotation>());
-            _buildingConstruction.Initialize(playerInstance, _input.Controls);
+            _buildingConstruction.Initialize(playerInstance, _input);
         }
 
         private void OnEnable() => _input.Enable();

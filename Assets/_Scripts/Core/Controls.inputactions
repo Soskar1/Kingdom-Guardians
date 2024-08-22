@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DeltaMouse",
-                    "type": "PassThrough",
-                    "id": "e4226f77-3fdf-4f6d-b1b0-2d85cd4ee273",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "BuildingUI",
                     "type": "Button",
                     "id": "160949cb-d06c-4787-9b58-461539a1e44a",
@@ -44,7 +35,7 @@
                 {
                     "name": "Build",
                     "type": "Button",
-                    "id": "2d2a55da-5445-49fa-ad38-a7055a76bc84",
+                    "id": "d5337973-eb7e-4f49-b634-ecc93770c493",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
@@ -120,17 +111,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7c98b5eb-7e5c-40b9-8e67-3c507a58fb61",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DeltaMouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "35f2039d-5f22-4f38-87f0-4cbf41b4895c",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -142,12 +122,60 @@
                 },
                 {
                     "name": "",
-                    "id": "2143f64c-5cd9-42e9-af19-20879bb34fcc",
+                    "id": "1d219401-7a37-4766-aeb5-fb06d8c4fade",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Build",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "System",
+            "id": "7766b152-42fc-491c-bce4-2159f105602b",
+            "actions": [
+                {
+                    "name": "DeltaMouse",
+                    "type": "PassThrough",
+                    "id": "96d36827-85d1-4c9e-9b2b-07009e6ad308",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Scroll",
+                    "type": "PassThrough",
+                    "id": "fad307bc-8e01-4563-9023-a76e8d910ca6",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8db6437b-6678-483d-a3ad-d93aaddc1ea9",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeltaMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42494026-ec23-4bb1-a75b-9f42a83c8fce",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

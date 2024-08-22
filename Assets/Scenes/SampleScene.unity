@@ -2005,6 +2005,7 @@ MonoBehaviour:
   _layers:
     serializedVersion: 2
     m_Bits: 8
+  _rotationSpeed: 10
 --- !u!114 &2007594488
 MonoBehaviour:
   m_ObjectHideFlags: 0

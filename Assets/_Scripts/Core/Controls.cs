@@ -46,15 +46,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DeltaMouse"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""e4226f77-3fdf-4f6d-b1b0-2d85cd4ee273"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""BuildingUI"",
                     ""type"": ""Button"",
                     ""id"": ""160949cb-d06c-4787-9b58-461539a1e44a"",
@@ -66,7 +57,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Build"",
                     ""type"": ""Button"",
-                    ""id"": ""2d2a55da-5445-49fa-ad38-a7055a76bc84"",
+                    ""id"": ""d5337973-eb7e-4f49-b634-ecc93770c493"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press"",
@@ -142,17 +133,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7c98b5eb-7e5c-40b9-8e67-3c507a58fb61"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DeltaMouse"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""35f2039d-5f22-4f38-87f0-4cbf41b4895c"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
@@ -164,12 +144,60 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2143f64c-5cd9-42e9-af19-20879bb34fcc"",
+                    ""id"": ""1d219401-7a37-4766-aeb5-fb06d8c4fade"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Build"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""System"",
+            ""id"": ""7766b152-42fc-491c-bce4-2159f105602b"",
+            ""actions"": [
+                {
+                    ""name"": ""DeltaMouse"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""96d36827-85d1-4c9e-9b2b-07009e6ad308"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fad307bc-8e01-4563-9023-a76e8d910ca6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8db6437b-6678-483d-a3ad-d93aaddc1ea9"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeltaMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42494026-ec23-4bb1-a75b-9f42a83c8fce"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -182,9 +210,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_DeltaMouse = m_Player.FindAction("DeltaMouse", throwIfNotFound: true);
         m_Player_BuildingUI = m_Player.FindAction("BuildingUI", throwIfNotFound: true);
         m_Player_Build = m_Player.FindAction("Build", throwIfNotFound: true);
+        // System
+        m_System = asset.FindActionMap("System", throwIfNotFound: true);
+        m_System_DeltaMouse = m_System.FindAction("DeltaMouse", throwIfNotFound: true);
+        m_System_Scroll = m_System.FindAction("Scroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -248,7 +279,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_DeltaMouse;
     private readonly InputAction m_Player_BuildingUI;
     private readonly InputAction m_Player_Build;
     public struct PlayerActions
@@ -257,7 +287,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @DeltaMouse => m_Wrapper.m_Player_DeltaMouse;
         public InputAction @BuildingUI => m_Wrapper.m_Player_BuildingUI;
         public InputAction @Build => m_Wrapper.m_Player_Build;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -275,9 +304,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @DeltaMouse.started += instance.OnDeltaMouse;
-            @DeltaMouse.performed += instance.OnDeltaMouse;
-            @DeltaMouse.canceled += instance.OnDeltaMouse;
             @BuildingUI.started += instance.OnBuildingUI;
             @BuildingUI.performed += instance.OnBuildingUI;
             @BuildingUI.canceled += instance.OnBuildingUI;
@@ -294,9 +320,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @DeltaMouse.started -= instance.OnDeltaMouse;
-            @DeltaMouse.performed -= instance.OnDeltaMouse;
-            @DeltaMouse.canceled -= instance.OnDeltaMouse;
             @BuildingUI.started -= instance.OnBuildingUI;
             @BuildingUI.performed -= instance.OnBuildingUI;
             @BuildingUI.canceled -= instance.OnBuildingUI;
@@ -320,12 +343,70 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // System
+    private readonly InputActionMap m_System;
+    private List<ISystemActions> m_SystemActionsCallbackInterfaces = new List<ISystemActions>();
+    private readonly InputAction m_System_DeltaMouse;
+    private readonly InputAction m_System_Scroll;
+    public struct SystemActions
+    {
+        private @Controls m_Wrapper;
+        public SystemActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @DeltaMouse => m_Wrapper.m_System_DeltaMouse;
+        public InputAction @Scroll => m_Wrapper.m_System_Scroll;
+        public InputActionMap Get() { return m_Wrapper.m_System; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SystemActions set) { return set.Get(); }
+        public void AddCallbacks(ISystemActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SystemActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SystemActionsCallbackInterfaces.Add(instance);
+            @DeltaMouse.started += instance.OnDeltaMouse;
+            @DeltaMouse.performed += instance.OnDeltaMouse;
+            @DeltaMouse.canceled += instance.OnDeltaMouse;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
+        }
+
+        private void UnregisterCallbacks(ISystemActions instance)
+        {
+            @DeltaMouse.started -= instance.OnDeltaMouse;
+            @DeltaMouse.performed -= instance.OnDeltaMouse;
+            @DeltaMouse.canceled -= instance.OnDeltaMouse;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
+        }
+
+        public void RemoveCallbacks(ISystemActions instance)
+        {
+            if (m_Wrapper.m_SystemActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ISystemActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SystemActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SystemActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public SystemActions @System => new SystemActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnDeltaMouse(InputAction.CallbackContext context);
         void OnBuildingUI(InputAction.CallbackContext context);
         void OnBuild(InputAction.CallbackContext context);
+    }
+    public interface ISystemActions
+    {
+        void OnDeltaMouse(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

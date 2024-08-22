@@ -6,6 +6,8 @@ namespace KingdomGuardians.Core.BuildSystem
     public class BuildingProjection : MonoBehaviour
     {
         [SerializeField] private LayerMask _layers;
+        [SerializeField] private float _rotationSpeed;
+        private Input _input;
         private Transform _head;
         private GameObject _selectedBuilding;
         private bool _canProject = false;
@@ -14,7 +16,11 @@ namespace KingdomGuardians.Core.BuildSystem
 
         public GameObject SelectedBuilding => _selectedBuilding;
 
-        public void Initialize(Player player) => _head = player.Head;
+        public void Initialize(Player player, Input input)
+        {
+            _head = player.Head;
+            _input = input;
+        }
 
         private void Update()
         {
@@ -24,18 +30,24 @@ namespace KingdomGuardians.Core.BuildSystem
             Physics.Raycast(_head.position, _head.forward, out RaycastHit hitInfo, Mathf.Infinity, _layers);
             if (hitInfo.collider != null)
                 _selectedBuilding.transform.position = hitInfo.point;
+
+            if (_input.Scroll > 0)
+                _selectedBuilding.transform.Rotate(Vector3.up, _rotationSpeed);
+            else if (_input.Scroll < 0)
+                _selectedBuilding.transform.Rotate(Vector3.up, -_rotationSpeed);
         }
 
         public void StartBuildingProjection(BuildingInfo buildingInfo)
         {
             _selectedBuilding = GetGameObject(buildingInfo);
+            _selectedBuilding.transform.rotation = Quaternion.identity;
             _selectedBuilding.SetActive(true);
             _canProject = true;
         }
 
         public void StopProjection()
         {
-            _selectedBuilding?.SetActive(false);
+            _selectedBuilding.SetActive(false);
             _canProject = false;
         }
 
@@ -56,12 +68,6 @@ namespace KingdomGuardians.Core.BuildSystem
             }
 
             return building;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(_head.position, _head.position + _head.forward * Mathf.Infinity);
         }
     }
 }
