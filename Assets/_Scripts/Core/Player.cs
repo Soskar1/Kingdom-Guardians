@@ -18,6 +18,8 @@ namespace KingdomGuardians.Core
         private Input _input;
         [SerializeField] private Transform _head;
 
+        public Transform Head => _head;
+
         private void Awake()
         {
             _movement = GetComponent<PhysicsMovement>();

@@ -368,7 +368,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 217949426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1100635133}
+        m_TargetAssemblyTypeName: KingdomGuardians.Core.UI.BuildingInfoUI, Assembly-CSharp
+        m_MethodName: Project
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &217949426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,6 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1917241843712009855, guid: 1e3a9110548f2ec4b896796fe97286f9, type: 3}
   _gameUI: {fileID: 1141229277}
+  _buildingProjection: {fileID: 2007594487}
   _spawnpoint: {fileID: 1292781664}
 --- !u!1 &744918144
 GameObject:
@@ -810,6 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100635132}
+  - component: {fileID: 1100635133}
   m_Layer: 5
   m_Name: Cannon
   m_TagString: Untagged
@@ -839,6 +853,22 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: -100}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1100635133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100635131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c13885d602708eb40ad30facb9c2da7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingInfo: {fileID: 11400000, guid: ac1d99865b761444c82478411fc5bb1b, type: 2}
+  _buildingProjection: {fileID: 2007594487}
+  _buildingName: {fileID: 1967317486}
+  _cost: {fileID: 1658973720}
 --- !u!1 &1141229272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1567,7 @@ GameObject:
   - component: {fileID: 1658973721}
   - component: {fileID: 1658973720}
   m_Layer: 5
-  m_Name: Price Text
+  m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1582,7 +1612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 coin
+  m_text: Price
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1805,7 +1835,7 @@ GameObject:
   - component: {fileID: 1967317487}
   - component: {fileID: 1967317486}
   m_Layer: 5
-  m_Name: Cannon Text
+  m_Name: BuildingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1880,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cannon
+  m_text: BuildingName
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1877,8 +1907,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1927,6 +1957,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967317484}
   m_CullTransparentMesh: 1
+--- !u!1 &2007594485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007594486}
+  - component: {fileID: 2007594487}
+  m_Layer: 0
+  m_Name: BuildingProjection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2007594486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007594485}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007594487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007594485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d64090834fe504e98632258a366f3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxBuildDistance: 5
+  _layers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &21722246713940840
 Transform:
   m_ObjectHideFlags: 0
@@ -7494,3 +7572,4 @@ SceneRoots:
   - {fileID: 1462442502357691009}
   - {fileID: 1141229276}
   - {fileID: 1459457546}
+  - {fileID: 2007594486}
